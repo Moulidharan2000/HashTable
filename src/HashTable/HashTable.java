@@ -23,10 +23,6 @@ public class HashTable<K, V> {
         return (myNode == null) ? null : myNode.getValue();
     }
 
-   // Method to search the word in LinkedList
-    // key : key to search
-
-
     public MapNode<K, V> search(K key) {
         MapNode currentNode = head;
         while (currentNode != null) {
@@ -38,10 +34,6 @@ public class HashTable<K, V> {
 
         return currentNode;
     }
-
-    //Method to add key and value to hash table
-    // key    : word to be added
-     //value: frequency of word
 
     public void add(K key, V value) {
         int index = this.getBucketIndex(key);
@@ -58,18 +50,12 @@ public class HashTable<K, V> {
             myNode.setValue(value);
     }
 
-    /**
-     * this implements hash function to find index for a key
-     */
     public int getBucketIndex(K key) {
         int hashCode = Math.abs(key.hashCode());
         int index = hashCode % numOfBuckets;
-        ////System.out.println("Key: "+word+" hashcode: "+hashCode+" index: "+index);
         return index;
 
     }
-    // Method to append value to Linked List
-    // myNode : value to append
     private void append(MapNode<K, V> myNode) {
         if (this.head == null)
             this.head = myNode;
@@ -79,6 +65,21 @@ public class HashTable<K, V> {
             this.tail.setNext(myNode);
             this.tail = myNode;
         }
+    }
+    public void remove(K key) {
+        MapNode currentNode = head;
+        MapNode<K, V> previousNode = null;
+        while (currentNode != null && currentNode.getKey().equals(key)) {
+            head = currentNode.getNext();
+        }
+        while (currentNode != null && !(currentNode.getKey().equals(key))) {
+            previousNode = currentNode;
+            currentNode = currentNode.getNext();
+        }
+        if (currentNode != null)
+            previousNode.next = currentNode.next;
+        if (currentNode == null)
+            System.out.println("Word not found");
     }
     
     public String toString() {
