@@ -4,7 +4,7 @@ public class HashTableMain {
 
 	public static void main(String[] args) {
         HashTable<String, Integer> hashTable = new HashTable();
-        String sentence = "To be or not to be";
+        String sentence = "A Hashtable is an array of a list. Each list is known as a bucket. The position of the bucket is identified by calling the hashcode() method.";
         String[] sentenceArray = sentence.toLowerCase().split(" ");
         for (String word : sentenceArray) {
             Integer value = hashTable.get(word);
